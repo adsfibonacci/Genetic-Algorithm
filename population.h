@@ -15,6 +15,8 @@ class Population {
                 vector<Gene*> next_genes;
 
                 Gene* optimal_gene;
+
+                int tenth;
         public:
                 //initial populations
                 Population(int seed = 1, size_t init = 2);

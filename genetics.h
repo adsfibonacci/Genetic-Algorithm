@@ -42,3 +42,5 @@ class Gene {
         friend struct GeneComp;
 };
 #endif //GENE_H_
+
+pair<Gene*, Gene*> SinglePointCrossover(Gene* p1, Gene* p2);
