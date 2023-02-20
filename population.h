@@ -12,7 +12,9 @@ class Population {
 
                 vector<Gene*> active_genes;
 
-                vector<Gene*> optimal_genes;
+                vector<Gene*> next_genes;
+
+                Gene* optimal_gene;
         public:
                 //initial populations
                 Population(int seed = 1, size_t init = 2);

@@ -12,3 +12,14 @@ struct GeneComp {
     }
 };
 #endif //GENECOMP_H_
+
+template<typename T>
+T weighted_probability() {
+
+    vector<int> weights = {};
+
+    for(size_t i = 0; i < GENE_SIZE; ++i) {
+
+    }
+
+}

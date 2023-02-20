@@ -1,4 +1,5 @@
 #include "genetics.h"
+#include "gene_comparison.h"
 
 
 Gene::Gene() {
@@ -33,6 +34,12 @@ int Gene::get_fitness() {
     return fitness;
 }
 
+void Gene::mutate() {
+    size_t num = rand() % (GENE_SIZE - 1);
+    size_t mutation = rand() % (GENE_SIZE - 1);
+    base[num] = mutation;
+}
+
 ostream& operator<<(ostream& os, Gene& allele) {
     for(size_t i = 0; i < GENE_SIZE; ++i) {
         os << allele.base[i] << "\t";
@@ -40,6 +47,13 @@ ostream& operator<<(ostream& os, Gene& allele) {
     os << endl;
     return os;
 }
+bool operator<(Gene& allele1, Gene& allele2) {return allele1.fitness < allele2.fitness;}
+bool operator>(Gene& allele1, Gene& allele2) {return allele1.fitness > allele2.fitness;}
+bool operator==(Gene& allele1, Gene& allele2) {return allele1.fitness == allele2.fitness;}
+
+const bool operator<(const Gene& allele1, const Gene& allele2) {return allele1.fitness < allele2.fitness;}
+const bool operator>(const Gene& allele1, const Gene& allele2) {return allele1.fitness > allele2.fitness;}
+const bool operator==(const Gene& allele1, const Gene& allele2){return allele1.fitness == allele2.fitness;}
 
 pair<Gene*, Gene*> SinglePointCrossover(Gene* p1, Gene* p2) {
 
@@ -49,7 +63,6 @@ pair<Gene*, Gene*> SinglePointCrossover(Gene* p1, Gene* p2) {
     Gene* c2 = new Gene(p2->base, p1->base, point);
     return make_pair(c1, c2);
 }
-
 pair<Gene*, Gene*> DoublePointCrossover(Gene* p1, Gene* p2) {
 
     size_t point1 = 1 + rand() % (GENE_SIZE - 2);
