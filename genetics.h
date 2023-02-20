@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <utility>
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
@@ -25,6 +26,7 @@ class Gene {
         int  get_fitness();
 
         friend ostream& operator<<(ostream& os, Gene& allele);
+        friend pair<Gene*, Gene*> offspring(Gene* p1, Gene* p2);
         friend struct GeneComp;
 };
 #endif //GENE_H_

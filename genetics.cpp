@@ -1,4 +1,5 @@
 #include "genetics.h"
+#include <new>
 
 Gene::Gene(int seed) {
     srand(seed);
@@ -23,7 +24,7 @@ void Gene::fill(size_t begin, size_t end) {
 }
 void Gene::calculate_fitness() {
     fitness = 0;
-    for(size_t i = 0; i < base; ++i) {
+    for(size_t i = 0; i < GENE_SIZE; ++i) {
         fitness += base[i];
     }
 }
@@ -37,4 +38,10 @@ ostream& operator<<(ostream& os, Gene& allele) {
     }
     os << endl;
     return os;
+}
+
+pair<Gene*, Gene*> offspring(Gene* p1, Gene* p2) {
+    Gene* c1 = new Gene();
+    Gene* c2 = new Gene();
+    return make_pair(c1, c2);
 }
