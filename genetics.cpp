@@ -1,20 +1,21 @@
 #include "genetics.h"
-#include <new>
 
-Gene::Gene(int seed) {
-    srand(seed);
+
+Gene::Gene() {
     fill(0, GENE_SIZE);
 }
 
-Gene::Gene(int* data, size_t end, int seed) {
-    srand(seed);
-
+Gene::Gene(int* data1, int* data2, size_t end1, size_t end2) {
     size_t i = 0;
-    for(; i < min(end, GENE_SIZE); ++i) {
-        base[i] = data[i];
+    for(; i < end1; ++i) {
+        base[i] = data1[i];
     }
-
-    fill(i, GENE_SIZE);
+    for(; i < end2; ++i) {
+        base[i] = data2[i];
+    }
+    for(; i < GENE_SIZE; ++i) {
+        base[i] = data1[i];
+    }
 }
 
 void Gene::fill(size_t begin, size_t end) {
@@ -40,8 +41,22 @@ ostream& operator<<(ostream& os, Gene& allele) {
     return os;
 }
 
-pair<Gene*, Gene*> offspring(Gene* p1, Gene* p2) {
-    Gene* c1 = new Gene();
-    Gene* c2 = new Gene();
+pair<Gene*, Gene*> SinglePointCrossover(Gene* p1, Gene* p2) {
+
+    size_t point = 1 + rand() % (GENE_SIZE - 1);
+
+    Gene* c1 = new Gene(p1->base, p2->base, point);
+    Gene* c2 = new Gene(p2->base, p1->base, point);
+    return make_pair(c1, c2);
+}
+
+pair<Gene*, Gene*> DoublePointCrossover(Gene* p1, Gene* p2) {
+
+    size_t point1 = 1 + rand() % (GENE_SIZE - 2);
+    size_t point2 = point1 + rand() % (GENE_SIZE - 1);
+
+    Gene* c1 = new Gene(p1->base, p2->base, point1, point2);
+    Gene* c2 = new Gene(p2->base, p1->base, point1, point2);
+
     return make_pair(c1, c2);
 }
