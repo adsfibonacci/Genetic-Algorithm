@@ -45,6 +45,7 @@ void Gene::mutate() {
         size_t mutation = rand() % GENE_SIZE;
         base[point] = mutation;
     }
+    calculate_fitness();
 }
 
 ostream& operator<<(ostream& os, Gene& allele) {

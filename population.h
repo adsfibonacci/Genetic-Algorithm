@@ -15,11 +15,10 @@ class Population {
                 size_t tenth;
         public:
                 //initial populations
-                Population(int seed = 1, size_t init = 2);
+                Population(size_t init = 2);
                 ~Population();
 
                 //fitness
-                void calculate_fitness(vector<Gene*>& set);
                 void sort_fitness(vector<Gene*>& set);
                 bool fitness();
 
@@ -27,6 +26,7 @@ class Population {
                 void crossover();
 
                 friend ostream& operator<<(ostream& os, Population& p);
+                friend int main();
 };
 
 #endif // POPULATION_H_

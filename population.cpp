@@ -1,12 +1,12 @@
 #include "population.h"
 
-Population::Population(int seed, size_t init) {
-    srand(seed);
+Population::Population(size_t init) {
 
     initial_genes.reserve(init);
     created_genes.reserve(init);
     active_genes.reserve(init);
     next_genes.reserve(init);
+
     for(size_t i = 0; i < init; ++i) {
         Gene *temp = new Gene();
         initial_genes.push_back(temp);
@@ -20,11 +20,6 @@ Population::~Population() {
     }
 }
 
-void Population::calculate_fitness(vector<Gene*>& set) {
-    for(size_t i = 0; i < set.size(); ++i) {
-        set[i]->calculate_fitness();
-    }
-}
 void Population::sort_fitness(vector<Gene*>& set) {
     sort(set.begin(), set.end(), GeneComp());
 }
