@@ -13,13 +13,15 @@ struct GeneComp {
 };
 #endif //GENECOMP_H_
 
-template<typename T>
-T weighted_probability() {
-
-    vector<int> weights = {};
-
-    for(size_t i = 0; i < GENE_SIZE; ++i) {
-
+#ifndef RANDOM
+#define RANDOM
+inline size_t random(size_t num) {
+    size_t val = rand() % GENE_SIZE;
+    if(val <= GENE_SIZE - 2) {
+        return num;
     }
-
+    else {
+        return random(num+1);
+    }
 }
+#endif

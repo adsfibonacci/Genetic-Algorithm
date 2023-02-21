@@ -7,7 +7,7 @@ Gene::Gene() {
     calculate_fitness();
 }
 
-Gene::Gene(int* data1, int* data2, size_t end1, size_t end2) {
+Gene::Gene(size_t* data1, size_t* data2, size_t end1, size_t end2) {
     size_t i = 0;
     for(; i < end1; ++i) {
         base[i] = data1[i];
@@ -25,6 +25,7 @@ void Gene::fill(size_t begin, size_t end) {
     for(; begin < end; ++begin) {
         base[begin] = rand() % 10;
     }
+    calculate_fitness();
 }
 void Gene::calculate_fitness() {
     fitness = 0;
@@ -32,14 +33,18 @@ void Gene::calculate_fitness() {
         fitness += base[i];
     }
 }
-int Gene::get_fitness() {
+size_t Gene::get_fitness() {
     return fitness;
 }
 
 void Gene::mutate() {
-    size_t num = rand() % (GENE_SIZE - 1);
-    int mutation = rand() % (GENE_SIZE - 1);
-    base[num] = mutation;
+    size_t num_mutations = random(1);
+    cout << num_mutations << "\t\t\t";
+    for(size_t i = 0; i < num_mutations; ++i) {
+        size_t point = rand() % GENE_SIZE;
+        size_t mutation = rand() % GENE_SIZE;
+        base[point] = mutation;
+    }
 }
 
 ostream& operator<<(ostream& os, Gene& allele) {

@@ -16,16 +16,16 @@ const size_t GENE_SIZE = 10;
 
 class Gene {
     private:
-        int base[GENE_SIZE];
-        int fitness;
+        size_t base[GENE_SIZE];
+        size_t fitness;
 
     public:
         Gene();
-        Gene(int* data1, int* data2, size_t end1, size_t end2 = GENE_SIZE);
+        Gene(size_t* data1, size_t* data2, size_t end1, size_t end2 = GENE_SIZE);
 
         void fill(size_t begin, size_t end);
         void calculate_fitness();
-        int  get_fitness();
+        size_t  get_fitness();
 
         void mutate();
 
