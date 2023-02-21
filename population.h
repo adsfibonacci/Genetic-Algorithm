@@ -7,16 +7,12 @@
 class Population {
         private:
                 vector<Gene*> initial_genes;
-
                 vector<Gene*> created_genes;
-
                 vector<Gene*> active_genes;
-
                 vector<Gene*> next_genes;
+                vector<Gene*> optimal_genes;
 
-                Gene* optimal_gene;
-
-                int tenth;
+                size_t tenth;
         public:
                 //initial populations
                 Population(int seed = 1, size_t init = 2);
@@ -25,10 +21,12 @@ class Population {
                 //fitness
                 void calculate_fitness(vector<Gene*>& set);
                 void sort_fitness(vector<Gene*>& set);
-                void fitness();
+                bool fitness();
 
                 //crossover
                 void crossover();
+
+                friend ostream& operator<<(ostream& os, Population& p);
 };
 
 #endif // POPULATION_H_

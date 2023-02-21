@@ -7,9 +7,9 @@ struct GeneComp {
     bool operator() (Gene* allele1, Gene* allele2) {
         return allele1->fitness > allele2->fitness;
     }
-    const bool operator() (const Gene* allele1, const Gene* allele2) {
-        return allele1->fitness > allele2->fitness;
-    }
+    //const bool operator() (const Gene* allele1, const Gene* allele2) {
+    //    return allele1->fitness > allele2->fitness;
+    //}
 };
 #endif //GENECOMP_H_
 

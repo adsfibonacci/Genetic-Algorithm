@@ -33,9 +33,9 @@ class Gene {
         friend bool operator<(Gene& allele1, Gene& allele2);
         friend bool operator>(Gene& allele1, Gene& allele2);
         friend bool operator==(Gene& allele1, Gene& allele2);
-        friend const bool operator<(const Gene& allele1, const Gene& allele2);
-        friend const bool operator>(const Gene& allele1, const Gene& allele2);
-        friend const bool operator==(const Gene& allele1, const Gene& allele2);
+        //friend const bool operator<(const Gene& allele1, const Gene& allele2);
+        //friend const bool operator>(const Gene& allele1, const Gene& allele2);
+        //friend const bool operator==(const Gene& allele1, const Gene& allele2);
 
         friend pair<Gene*, Gene*> SinglePointCrossover(Gene* p1, Gene* p2);
         friend pair<Gene*, Gene*> DoublePointCrossover(Gene* p1, Gene* p2);

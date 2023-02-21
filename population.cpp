@@ -1,6 +1,8 @@
 #include "population.h"
 
 Population::Population(int seed, size_t init) {
+    srand(seed);
+
     initial_genes.reserve(init);
     created_genes.reserve(init);
     active_genes.reserve(init);
@@ -26,11 +28,13 @@ void Population::calculate_fitness(vector<Gene*>& set) {
 void Population::sort_fitness(vector<Gene*>& set) {
     sort(set.begin(), set.end(), GeneComp());
 }
-void Population::fitness() {
-    tenth =   (10 * active_genes.size()) / 100;
+bool Population::fitness() {
+    tenth = (10 * active_genes.size()) / 100;
     if((active_genes.size() <= tenth)) {
-        return;
+        optimal_genes = active_genes;
+        return true;
     }
+    return false;
 }
 
 void Population::crossover() {
@@ -38,7 +42,7 @@ void Population::crossover() {
     for(; i < tenth; ++i) {
         next_genes.push_back(active_genes[i]);
     }
-    for(; i < active_genes.size(); ++i) {
+    for(; i < active_genes.size(); i+=2) {
         size_t p1 = rand() % (active_genes.size() / 50);
         size_t p2 = rand() % (active_genes.size() / 50);
 
@@ -49,4 +53,11 @@ void Population::crossover() {
         next_genes.push_back(spc.second);
     }
 
+}
+
+ostream& operator<<(ostream& os, Population& p) {
+    for(size_t i = 0; i < p.active_genes.size(); ++i) {
+        os << *p.active_genes[i];
+    }
+    return os;
 }

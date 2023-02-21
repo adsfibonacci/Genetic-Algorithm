@@ -4,6 +4,7 @@
 
 Gene::Gene() {
     fill(0, GENE_SIZE);
+    calculate_fitness();
 }
 
 Gene::Gene(int* data1, int* data2, size_t end1, size_t end2) {
@@ -17,6 +18,7 @@ Gene::Gene(int* data1, int* data2, size_t end1, size_t end2) {
     for(; i < GENE_SIZE; ++i) {
         base[i] = data1[i];
     }
+    calculate_fitness();
 }
 
 void Gene::fill(size_t begin, size_t end) {
@@ -36,7 +38,7 @@ int Gene::get_fitness() {
 
 void Gene::mutate() {
     size_t num = rand() % (GENE_SIZE - 1);
-    size_t mutation = rand() % (GENE_SIZE - 1);
+    int mutation = rand() % (GENE_SIZE - 1);
     base[num] = mutation;
 }
 
@@ -51,13 +53,14 @@ bool operator<(Gene& allele1, Gene& allele2) {return allele1.fitness < allele2.f
 bool operator>(Gene& allele1, Gene& allele2) {return allele1.fitness > allele2.fitness;}
 bool operator==(Gene& allele1, Gene& allele2) {return allele1.fitness == allele2.fitness;}
 
-const bool operator<(const Gene& allele1, const Gene& allele2) {return allele1.fitness < allele2.fitness;}
-const bool operator>(const Gene& allele1, const Gene& allele2) {return allele1.fitness > allele2.fitness;}
-const bool operator==(const Gene& allele1, const Gene& allele2){return allele1.fitness == allele2.fitness;}
+//const bool operator<(const Gene& allele1, const Gene& allele2) {return allele1.fitness < allele2.fitness;}
+//const bool operator>(const Gene& allele1, const Gene& allele2) {return allele1.fitness > allele2.fitness;}
+//const bool operator==(const Gene& allele1, const Gene& allele2){return allele1.fitness == allele2.fitness;}
 
 pair<Gene*, Gene*> SinglePointCrossover(Gene* p1, Gene* p2) {
 
-    size_t point = 1 + rand() % (GENE_SIZE - 1);
+    size_t point = 0 + rand() % (GENE_SIZE - 1);
+    cout << "Crossover point at " << point << endl;
 
     Gene* c1 = new Gene(p1->base, p2->base, point);
     Gene* c2 = new Gene(p2->base, p1->base, point);
