@@ -39,7 +39,7 @@ size_t Gene::get_fitness() {
 
 void Gene::mutate() {
     size_t num_mutations = random(1);
-    cout << num_mutations << "\t\t\t";
+    //cout << num_mutations << "\t\t\t";
     for(size_t i = 0; i < num_mutations; ++i) {
         size_t point = rand() % GENE_SIZE;
         size_t mutation = rand() % GENE_SIZE;
@@ -57,7 +57,12 @@ ostream& operator<<(ostream& os, Gene& allele) {
 }
 bool operator<(Gene& allele1, Gene& allele2) {return allele1.fitness < allele2.fitness;}
 bool operator>(Gene& allele1, Gene& allele2) {return allele1.fitness > allele2.fitness;}
-bool operator==(Gene& allele1, Gene& allele2) {return allele1.fitness == allele2.fitness;}
+bool operator==(Gene& allele1, Gene& allele2) {
+    for(size_t i = 0; i < GENE_SIZE; ++i) {
+        if(allele1.base[i] != allele2.base[i]) {return false;}
+    }
+    return true;
+}
 
 //const bool operator<(const Gene& allele1, const Gene& allele2) {return allele1.fitness < allele2.fitness;}
 //const bool operator>(const Gene& allele1, const Gene& allele2) {return allele1.fitness > allele2.fitness;}
@@ -66,7 +71,7 @@ bool operator==(Gene& allele1, Gene& allele2) {return allele1.fitness == allele2
 pair<Gene*, Gene*> SinglePointCrossover(Gene* p1, Gene* p2) {
 
     size_t point = 0 + rand() % (GENE_SIZE - 1);
-    cout << "Crossover point at " << point << endl;
+    //cout << "Crossover point at " << point << endl;
 
     Gene* c1 = new Gene(p1->base, p2->base, point);
     Gene* c2 = new Gene(p2->base, p1->base, point);

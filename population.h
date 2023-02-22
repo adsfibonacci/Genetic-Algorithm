@@ -10,7 +10,7 @@ class Population {
                 vector<Gene*> created_genes;
                 vector<Gene*> active_genes;
                 vector<Gene*> next_genes;
-                vector<Gene*> optimal_genes;
+                Gene* optimal_gene;
 
                 size_t tenth;
         public:
@@ -19,7 +19,7 @@ class Population {
                 ~Population();
 
                 //fitness
-                void sort_fitness(vector<Gene*>& set);
+                void sort_fitness();
                 bool fitness();
 
                 //crossover
