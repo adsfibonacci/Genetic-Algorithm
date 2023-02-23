@@ -14,8 +14,7 @@ int main() {
     Population humanity(20);
 
     while(!humanity.fitness()) {
-        //cout << "Marker" << endl;
-        //cout << humanity << endl;
+        cout << humanity.active_genes.size() << endl;
         humanity.crossover();
     }
 
