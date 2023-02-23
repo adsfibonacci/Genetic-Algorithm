@@ -80,7 +80,7 @@ pair<Gene*, Gene*> SinglePointCrossover(Gene* p1, Gene* p2) {
 pair<Gene*, Gene*> DoublePointCrossover(Gene* p1, Gene* p2) {
 
     size_t point1 = 1 + rand() % (GENE_SIZE - 2);
-    size_t point2 = point1 + rand() % (GENE_SIZE - 1);
+    size_t point2 = point1 + rand() % (GENE_SIZE - point1);
 
     Gene* c1 = new Gene(p1->base, p2->base, point1, point2);
     Gene* c2 = new Gene(p2->base, p1->base, point1, point2);

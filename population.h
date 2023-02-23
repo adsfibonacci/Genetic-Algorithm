@@ -23,7 +23,7 @@ class Population {
                 bool fitness();
 
                 //crossover
-                void crossover();
+                void crossover(bool s);
 
                 friend ostream& operator<<(ostream& os, Population& p);
                 friend int main();

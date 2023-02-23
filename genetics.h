@@ -28,19 +28,19 @@ class Gene {
                 void calculate_fitness();
                 size_t get_fitness();
 
-        void mutate();
+                void mutate();
 
-        friend ostream& operator<<(ostream& os, Gene& allele);
-        friend bool operator<(Gene& allele1, Gene& allele2);
-        friend bool operator>(Gene& allele1, Gene& allele2);
-        friend bool operator==(Gene& allele1, Gene& allele2);
-        //friend const bool operator<(const Gene& allele1, const Gene& allele2);
-        //friend const bool operator>(const Gene& allele1, const Gene& allele2);
-        //friend const bool operator==(const Gene& allele1, const Gene& allele2);
+                friend ostream& operator<<(ostream& os, Gene& allele);
+                friend bool operator<(Gene& allele1, Gene& allele2);
+                friend bool operator>(Gene& allele1, Gene& allele2);
+                friend bool operator==(Gene& allele1, Gene& allele2);
+                //friend const bool operator<(const Gene& allele1, const Gene& allele2);
+                //friend const bool operator>(const Gene& allele1, const Gene& allele2);
+                //friend const bool operator==(const Gene& allele1, const Gene& allele2);
 
-        friend pair<Gene*, Gene*> SinglePointCrossover(Gene* p1, Gene* p2);
-        friend pair<Gene*, Gene*> DoublePointCrossover(Gene* p1, Gene* p2);
-        friend struct GeneComp;
+                friend pair<Gene*, Gene*> SinglePointCrossover(Gene* p1, Gene* p2);
+                friend pair<Gene*, Gene*> DoublePointCrossover(Gene* p1, Gene* p2);
+                friend struct GeneComp;
 };
 #endif //GENE_H_
 
