@@ -5,30 +5,31 @@ Population::Population(size_t init) {
         cerr << "Initial population must be at least 2. \nExiting..."<<endl;
         exit(1);}
     initial_genes.reserve(init);
-    created_genes.reserve(init);
+    //created_genes.reserve(init);
     active_genes.reserve(init);
     next_genes.reserve(init);
 
     for(size_t i = 0; i < init; ++i) {
         Gene *temp = new Gene();
         initial_genes.push_back(temp);
-        created_genes.push_back(temp);
+        created_genes.push(temp);
         active_genes.push_back(temp);
     }
     sort_fitness();
-    fitness();
+    fitness(20);
 }
+//SAFE
 Population::~Population() {
-    for(size_t i = 0; i < created_genes.size(); ++i) {
-        delete created_genes[i];
+    while(!created_genes.empty()) {
+        created_genes.pop();
     }
 }
 
 void Population::sort_fitness() {
     sort(active_genes.begin(), active_genes.end(), GeneComp());
 }
-bool Population::fitness() {
-    tenth = (20 * active_genes.size()) / 100;
+bool Population::fitness(int perc) {
+    tenth = (perc * active_genes.size()) / 100;
     if(active_genes.front()->get_fitness() == 90) {
         optimal_gene = active_genes.front();
         return true;
@@ -54,10 +55,11 @@ void Population::crossover(bool s) {
         next_genes.push_back(spc.first);
         next_genes.push_back(spc.second);
 
-        created_genes.push_back(spc.first);
-        created_genes.push_back(spc.second);
+        created_genes.push(spc.first);
+        created_genes.push(spc.second);
     }
     active_genes = next_genes;
+    next_genes.clear();
     sort_fitness();
 }
 

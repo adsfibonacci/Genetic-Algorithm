@@ -7,10 +7,12 @@
 class Population {
         private:
                 vector<Gene*> initial_genes;
-                vector<Gene*> created_genes;
+
                 vector<Gene*> active_genes;
                 vector<Gene*> next_genes;
                 Gene* optimal_gene;
+
+                queue<Gene*> created_genes;
 
                 size_t tenth;
         public:
@@ -20,7 +22,7 @@ class Population {
 
                 //fitness
                 void sort_fitness();
-                bool fitness();
+                bool fitness(int perc);
 
                 //crossover
                 void crossover(bool s);
