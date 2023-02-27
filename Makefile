@@ -18,7 +18,7 @@
 #      test*.cpp pattern.
 
 #######################
-# TODO (begin) #
+# TODO (begin)#
 #######################
 # Change 'youruniqname' to match your UM uniqname (no quote marks).
 UNIQNAME    = speigad
