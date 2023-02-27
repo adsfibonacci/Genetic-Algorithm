@@ -25,6 +25,7 @@ Population::~Population() {
     }
 }
 
+//SAFE
 void Population::sort_fitness() {
     sort(active_genes.begin(), active_genes.end(), GeneComp());
 }
